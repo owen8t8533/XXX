@@ -1,0 +1,26 @@
+function 介面(玩家: player, 頁數: integer):
+	set {_i} to {_頁數}*(3*9) - ((3*9)- 1)
+	if {_i} is set:
+		create a gui with virtual chest with 4 rows named "&6test &d頁數:%{_頁數}%":
+			loop 3*9 times:
+				if {test::%{_i}%} is set:
+					make next gui to egg named "&b%{test::%{_i}%}%":
+						if {_玩家} has permission "op.test":
+							execute player command "/???" #當點擊GUI物品時執行的指令
+				add 1 to {_i}
+			make gui slot 4*9 - 1 to green glass pane named "&a下一頁 &8[&c%{_頁數} + 1%&8]":
+				set {_頁數new1} to "%{_頁數} + 1%" parsed as integer
+				介面({_玩家}, {_頁數new1})
+			if {_頁數} > 1:
+				make gui slot 4*9 - 9 to red glass pane named "&3上一頁 &8[&c%{_頁數} - 1%&8]":
+					set {_頁數new2} to "%{_頁數} - 1%" parsed as integer
+					介面({_玩家}, {_頁數new2})
+		open last gui to {_玩家}
+		stop
+ command /test [<text>] [<text>]:
+	trigger:
+		if arg-1 is "create":
+			add arg-2 to {test::*}
+		if arg-1 is "menu":
+			介面(player, 1)
+			
