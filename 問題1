@@ -1,0 +1,11 @@
+command /test4:
+	trigger:
+		spawn zombie at player
+		set {_zombie} to last spawned zombie
+		set {_d} to a new disguise with type PLAYER with username "Pig_Man"
+		set custom name of disguise {_d} to "&6&lPig_Man"
+		set name visibility of disguise {_d} to true
+		set disguise of {_zombie} to {_d}	
+		create nametag "a-owner"
+		set prefix of nametag "a-owner" to "&6&lOWNER &f"
+		add {_zombie} to nametag "a-owner"
